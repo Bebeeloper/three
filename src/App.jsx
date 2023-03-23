@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-import * as THREE from 'three'
-
 import { MainComponent } from './MainComponent/MainComponent';
 
 function App() {
@@ -67,7 +65,6 @@ function App() {
   
   return (
     <div className="App">
-      {/* <canvas id='myThreeJsCanvas'></canvas> */}
       <MainComponent></MainComponent>
     </div>
   )
