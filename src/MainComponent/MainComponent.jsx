@@ -29,6 +29,10 @@ function MainComponent(){
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         ambientLight.castShadow = true;
         scene.add(ambientLight);
+
+        // const directionalLight = new THREE.DirectionalLight(0xffffff, 500);
+        // directionalLight.position.set(0,2,0);
+        // scene.add(directionalLight);
     
         const spotLight = new THREE.SpotLight(0xffffff, 1);
         spotLight.castShadow = true;
