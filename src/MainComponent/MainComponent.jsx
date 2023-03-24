@@ -43,7 +43,9 @@ function MainComponent(){
         // const boxMaterial = new THREE.MeshNormalMaterial({wireframe: true});
         // const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
         // const texture = new THREE.TextureLoader().load( './UV_1k.jpg' );
-        const boxMaterial = new THREE.MeshBasicMaterial( );
+        const texture = new THREE.TextureLoader().load( '../../assets/931998321.png' );
+        const boxMaterial = new THREE.MeshBasicMaterial( { map: texture } );
+        // const boxMaterial = new THREE.MeshBasicMaterial( );
         const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
         scene.add(boxMesh);
         const materialBoxParams = {
@@ -71,10 +73,10 @@ function MainComponent(){
         boxMaterialFolder.addColor(materialBoxParams, 'boxMeshColor').onChange((value) => boxMesh.material.color.set(value));
 
     
-        const loader = new THREE.TextureLoader();
-        loader.load('../Assets/931998321.png', (texture) => {
-          boxMaterial.map = texture
-        })
+        // const loader = new THREE.TextureLoader();
+        // loader.load('../../assets/931998321.png', (texture) => {
+        //   boxMaterial.map = texture
+        // })
         const animate = () => {
           // boxMesh.rotation.x += 0.01;
           // boxMesh.rotation.y += 0.01;
