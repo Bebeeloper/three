@@ -36,17 +36,27 @@ function MainComponent(){
   };
 
   const createDirectionalLight = (positionX, positionY, positionZ) => {
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
-    const helper = new THREE.DirectionalLightHelper( directionalLight, 1 );
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 4);
+    // const helper = new THREE.DirectionalLightHelper( directionalLight, 1 );
     directionalLight.position.set(positionX, positionY,positionZ);
     scene.add(directionalLight);
-    scene.add(helper);
+    // scene.add(helper);
   };
 
   const createAmbientLight = () => {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 17);
     ambientLight.castShadow = true;
     scene.add(ambientLight);
+  };
+
+  const createPointLight = (positionX, positionY, positionZ, color, intensity, size) => {
+    const pointLight = new THREE.PointLight( color, intensity, size );
+    pointLight.position.set(positionX, positionY,positionZ);
+    scene.add(pointLight);
+
+    // const sphereSize = 0.3;
+    // const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+    // scene.add( pointLightHelper );
   };
 
   const createBox = (x, y , z , posX, posY, posZ) => {
@@ -54,6 +64,7 @@ function MainComponent(){
     const boxMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff });
     const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
     boxMesh.position.set(posX, posY, posZ);
+    boxMesh.receiveShadow = true;
     scene.add(boxMesh);
   }
 
@@ -66,8 +77,29 @@ function MainComponent(){
       createDirectionalLight(0,3,0);
       createAmbientLight();
 
+      // Red pointlight inside car
+      createPointLight(0,0,0, 0xff0000, 10, 500);
+
+      //Pointlights outside car delantera derecha
+      createPointLight(-2,0,2, 0xffffff, 1, 100);
+
+      //Pointlights outside car mitad derecha
+      createPointLight(-2,0,0, 0xffffff, 1, 100);
+
+      //Pointlights outside car trasera derecha
+      createPointLight(-2,0,-2, 0xffffff, 1, 100);
+
+      //Pointlights outside car delantera izquierda
+      createPointLight(2,0,2, 0xffffff, 1, 100);
+
+      //Pointlights outside car mitad izquierda
+      createPointLight(2,0,0, 0xffffff, 1, 100);
+
+      //Pointlights outside car trasera izquierda
+      createPointLight(2,0,-2, 0xffffff, 1, 100);
+
       // Floor
-      createBox(20,0.05,20, 0, -1, 0);
+      createBox(20,0.05,20, 0, -0.64, 0);
         
         // const spotLight = new THREE.SpotLight(0xffffff, 10);
         // spotLight.castShadow = true;
