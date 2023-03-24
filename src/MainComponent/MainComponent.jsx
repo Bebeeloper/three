@@ -34,14 +34,16 @@ function MainComponent(){
         // directionalLight.position.set(0,2,0);
         // scene.add(directionalLight);
     
-        const spotLight = new THREE.SpotLight(0xffffff, 1);
+        const spotLight = new THREE.SpotLight(0xffffff, 10);
         spotLight.castShadow = true;
         spotLight.position.set(0, 64, 32);
         scene.add(spotLight);
     
         const boxGeometry = new THREE.BoxGeometry(16, 16, 16);
         // const boxMaterial = new THREE.MeshNormalMaterial({wireframe: true});
-        const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
+        // const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
+        // const texture = new THREE.TextureLoader().load( './UV_1k.jpg' );
+        const boxMaterial = new THREE.MeshBasicMaterial( );
         const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
         scene.add(boxMesh);
         const materialBoxParams = {
@@ -69,6 +71,10 @@ function MainComponent(){
         boxMaterialFolder.addColor(materialBoxParams, 'boxMeshColor').onChange((value) => boxMesh.material.color.set(value));
 
     
+        const loader = new THREE.TextureLoader();
+        loader.load('../Assets/931998321.png', (texture) => {
+          boxMaterial.map = texture
+        })
         const animate = () => {
           // boxMesh.rotation.x += 0.01;
           // boxMesh.rotation.y += 0.01;
